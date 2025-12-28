@@ -1,0 +1,73 @@
+{
+    "tool-version": "0.2",
+    "name": "csv_neocivet",
+    "author": "M. Liu, H. Kim",
+    "descriptor-url": "https://github.com/MontrealSergiy/cbrain-plugins-neocivet/blob/master/cbrain_task_descriptors/neocivet_1subj.json",
+    "command-line": "source /opt/NEOCIVET_pipeline/neocivet_cbrain_1subj.sh [SOURCE] [BASEDIR] [TARGETDIR] ",
+    "inputs": [
+        {
+            "description": "The subject image MINC1 file named \"PREFIX_CASE_t1.mnc\", where \"PREFIX\" is an arbitrary name but usually the name of the study), and \"CASE\" is the ID of subject.",
+            "value-key": "[SOURCE]",
+            "optional": false, 
+            "list": false, 
+            "type": "File", 
+            "id": "input_file", 
+            "name": "MRI data (MINC 1)"
+        },
+        {
+            "description": "A folder for volume data and masks. Folder name is augumented with study and subject ids",
+            "default-value": "output",
+            "value-key": "[BASEDIR]",
+            "optional": false, 
+            "list": false, 
+            "type": "String", 
+            "id": "basedir",
+            "name": "Pre-processing results"
+        }, 
+        {
+            "description": "A folder with output surface files. Folder name is augumented with study and subject ids",
+            "default-value": "surface",
+            "value-key": "[TARGETDIR]",
+            "optional": false, 
+            "list": false,
+            "type": "String",
+            "id": "targetdir",
+            "name": "Surface folder"
+        }
+    ],
+
+    "schema-version": "0.5", 
+    "output-files": [
+        {
+            "description": "A folder prefix containing the results of pre-processing and masks. The perfix would be followed by study prefix and id",
+            "list": false, 
+            "id": "base",
+            "optional": true,
+            "path-template": "[BASEDIR]_[SOURCE]",
+            "path-template-stripped-extensions": ["_t1.mnc", "_t1.mnc.gz", "_t1.minc", "_t1.minc.gz", ".mnc", ".mnc.gz", "minc", "minc.gz"],
+            "name": "Output folder"
+        },
+        {
+            "description": "A folder containing the surface. The folder name would get added perfix would be followed by study prefix and id",
+            "list": false,
+            "id": "target",
+            "optional": false,
+            "path-template": "[TARGETDIR]_[SOURCE]",
+            "path-template-stripped-extensions": ["_t1.mnc", "_t1.mnc.gz", "_t1.minc", "_t1.minc.gz", ".mnc", ".mnc.gz", "minc", "minc.gz"],
+            "name": "Surface folder"
+        }
+    ], 
+    "description": "NEOCIVET, a neonatal Civet. This version accepts a single MINC 1 file of a subject or a list of files created in CBRAIN",
+    "tags": {
+        "domain": [
+            "neuroinformatics", 
+            "mri",
+            "neonatal",
+            "minc"
+        ]
+    },
+    "suggested-resources": {
+        "walltime-estimate": 100000,
+        "ram": 9
+    }
+}

@@ -1,0 +1,88 @@
+{
+    "tool-version": "0.1",
+    "name": "neocivet",
+    "author": "M. Liu, H. Kim",
+    "descriptor-url": "https://github.com/MontrealSergiy/cbrain-plugins-neocivet/blob/master/cbrain_task_descriptors/neocivet.json",
+    "command-line": "source /opt/NEOCIVET_pipeline/neocivet_cbrain_run.sh [PREFIX] [CASES] [SOURCEDIR] [BASEDIR] [TARGETDIR] ",
+    "inputs": [
+        {
+            "description": "Folder containing the subject T1 image files named \"PREFIX_CASE_t1.mnc\", where \"PREFIX\" is an arbitrary name (like the name of the study), and \"CASE\" is the ID of subject.",
+            "value-key": "[SOURCEDIR]",
+            "optional": false,
+            "list": false,
+            "type": "File",
+            "id": "input_folder",
+            "name": "Input T1 image folder"
+        },
+        {
+            "description": "A study name, with which all the input files start.",
+            "value-key": "[PREFIX]",
+            "optional": false,
+            "list": false,
+            "type": "String",
+            "id": "prefix",
+            "name": "The name of the study (prefix of T1 file names)"
+        },
+        {
+            "description": "A list of subjects id's (a file).",
+            "optional": false,
+            "list": false,
+            "type": "File",
+            "id": "cases",
+            "value-key": "[CASES]",
+            "name": "Subject list"
+        },
+        {
+            "description": "A folder with preprocessing results and masks.",
+            "default-value": "output",
+            "value-key": "[BASEDIR]",
+            "optional": false,
+            "list": false,
+            "type": "String",
+            "id": "basedir",
+            "name": "Pre-processing results"
+        },
+        {
+            "description": "A folder with output surface files.",
+            "default-value": "surface",
+            "value-key": "[TARGETDIR]",
+            "optional": false,
+            "list": false,
+            "type": "String",
+            "id": "targetdir",
+            "name": "Surface folder"
+        }
+    ],
+    "schema-version": "0.5",
+    "output-files": [
+        {
+            "description": "A folder containing the results of pre-processing and masks.",
+            "list": false,
+            "id": "base",
+            "optional": true,
+            "path-template": "[BASEDIR]",
+            "name": "Output folder"
+        },
+        {
+            "description": "A folder containing the surface.",
+            "list": false,
+            "id": "target",
+            "optional": false,
+            "path-template": "[TARGETDIR]",
+            "name": "Surface folder"
+        }
+    ],
+    "description": "NEOCIVET, a neonatal extension of Civet",
+    "tags": {
+        "domain": [
+            "neuroinformatics", 
+            "mri",
+            "neonatal",
+            "minc"
+        ]
+    },
+    "suggested-resources": {
+        "walltime-estimate": 258500,
+        "ram": 9
+    }
+}
